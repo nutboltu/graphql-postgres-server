@@ -1,0 +1,20 @@
+type Mutation {
+  addProject(name: String): addProjectResponse
+  updateProject(id: String, name: String): addProjectResponse
+  removeProject(id: String): addProjectResponse
+}
+
+type addProjectResponse {
+  id: String
+}
+
+type Query {
+  findProjectById(id: String): Project
+  findAllProjects(offset: Int!, limit: Int!): [Project]
+}
+
+type Project {
+  id: String
+  name: String
+  createdAt: String
+}

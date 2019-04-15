@@ -1,0 +1,71 @@
+{
+  "name": "featman-server",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "description": "API Server for featman",
+  "private": true,
+  "engineStrict": true,
+  "engines": {
+    "node": ">=8.0.0 <11.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nutboltu/featman-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nutboltu/featman-server/issues"
+  },
+  "homepage": "https://github.com/nutboltu/featman-server#README",
+  "scripts": {
+    "dev": "NODE_ENV=local nodemon --exec $(npm bin)/babel-node src/index.js",
+    "import:dbschema": "$(npm bin)/babel-node scripts/database/import.js",
+    "debug": "nodemon --watch \"src/**/*.ts\" --ignore \"src/**/*.spec.ts\" --exec \"node --inspect -r ts-node/register src/index.ts\"",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc --build tsconfig.production.json && npm run copy-schemas",
+    "copy-schemas": "$(npm bin)/cpx \"src/**/*.graphql\" dist",
+    "lint": "node $(npm bin)/eslint \"src//**/*.js\"",
+    "lint:fix": "node $(npm bin)/eslint \"src//**/*.js\" --fix",
+    "ci": "npm run lint && npm run test:coverage"
+  },
+  "dependencies": {
+    "apollo-datasource-rest": "0.2.1",
+    "apollo-server-express": "2.4.8",
+    "body-parser": "1.18.3",
+    "dotenv": "6.1.0",
+    "express": "4.16.4",
+    "feature-policy": "0.2.0",
+    "graphql": "14.0.2",
+    "graphql-depth-limit": "1.1.0",
+    "graphql-input-number": "0.0.10",
+    "graphql-tools": "4.0.3",
+    "helmet": "3.15.0",
+    "lodash": "4.17.11",
+    "merge-graphql-schemas": "1.5.8",
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.1.0",
+    "signale": "1.3.0",
+    "winston": "3.1.0",
+    "triple-beam": "^1.3.0",
+    "winston-transport": "^4.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-eslint": "^10.0.1",
+    "cpx": "^1.5.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "husky": "1.2.0",
+    "nodemon": "1.18.7",
+    "sequelize-auto": "^0.4.29"
+  }
+}
